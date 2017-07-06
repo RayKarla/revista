@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AddRevistaService } from './add-revista.service';
+
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -12,18 +14,7 @@ export class AddRevistaComponent implements OnInit {
   add = false;
   xlsxData:Array<any>;
   headers: Array<string>;
-  data: any = [
-    {
-      issn: "1528-7106",
-      titulo: "AACE INTERNATIONAL TRANSACTIONS",
-      estrato: "C"
-    },
-    {
-      issn: "2528-7106",
-      titulo: "BACE INTERNATIONAL TRANSACTIONS",
-      estrato: "D"
-    }
-  ];
+  public data = [];
   selectedElement: any = {
     issn:"", titulo: "", estrato:""
   }
@@ -60,13 +51,21 @@ export class AddRevistaComponent implements OnInit {
   setXlsxData(data: Array<any>) {
     this.headers = Object.keys(data[0]);
     this.xlsxData = data;
+    console.log(JSON.stringify(this.xlsxData));
   }
 
   props: Array<any>;
 
-  constructor() { }
+  constructor(private addRevistaService: AddRevistaService) { }
 
   ngOnInit() {
+    this.addRevistaService.listarRevistas()
+      .subscribe(
+        res => {
+          this.data = res;
+        },
+        error => console.log(error)
+      );
   }
 
 }

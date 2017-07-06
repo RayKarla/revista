@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class='col-md-12'>
-    <table [mfData]="data | filter:[filterQuery, ['issn', 'titulo', 'estrato']]" #mf="mfDataTable" [mfRowsOnPage]="5" class="table table-hover">
+    <table [mfData]="data | filter:[filterQuery, ['issn', 'titulo', 'estrato']]" #mf="mfDataTable" [mfRowsOnPage]="10" class="table table-hover table-striped">
       <thead>
         <tr>
           <th><mfDefaultSorter by="issn">ISSN</mfDefaultSorter></th>
@@ -29,12 +29,12 @@
           <td>{{item.issn}}</td>
           <td>{{item.titulo}}</td>
           <td>{{item.estrato}}</td>
-          <!--<td>{{item.logomarca}}</td>
+          <td>{{item.logomarca}}</td>
           <td></td>
           <td>{{item.qualis}}</td>
           <td>{{item.informacoesBasicas}}</td>
           <td>{{item.condicoesDeSubmissao}}</td>
-          <td>{{item.site}}</td>-->
+          <td>{{item.site}}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -64,19 +64,19 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>ISSN</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="selectedElement.issn" name="issn">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Titulo</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="selectedElement.titulo" name="titulo">
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Estrato</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="selectedElement.estrato" name="estrato">
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Qualis</label>
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="selectedElement.qualis" name="qualis">
                <option>A1</option>
                <option>A2</option>
                <option>B1</option>
@@ -105,7 +105,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Site</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="selectedElement.site" name="site">
               </div>
             </div>
           </div>
@@ -113,29 +113,38 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Condições de submissão</label>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea class="form-control" rows="5" [(ngModel)]="selectedElement.condicoesDeSubmissao" name="condicoesDeSubmissao"></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Informações básicas</label>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea class="form-control" rows="5" [(ngModel)]="selectedElement.informacoesBasicas" name="informacoesBasicas"></textarea>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
-                <label>Area</label>
-                <div class="col-md-12">
+              <div class='panel panel-success'>
+                <div class='panel-header'>
+                  Áreas Técnicas
+                </div>
+                <div class='panel-body'>
                   <div class="form-group">
-                    <label>Energy</label>
-                    <br>
-                    <input type="checkbox" name="topic[]" value="1">Breaker and Equipment of maneuver<br>
-                    <input type="checkbox" name="topic[]" value="2">Cables and transmission lines<br>
-                    <input type="checkbox" name="topic[]" value="3">Energy planning<br>
-                    <input type="checkbox" name="topic[]" value="4">Enviroment performance<br>
-                    <input type="checkbox" name="topic[]" value="5">Generation and machines (new sources, distributed generation)<br>
+                    <input type="checkbox" name="" value="1" >Breaker and Equipment of maneuver<br>
+                    <input type="checkbox" name="" value="2">Cables and transmission lines<br>
+                    <input type="checkbox" name="" value="3">Energy planning<br>
+                    <input type="checkbox" name="" value="4">Enviroment performance<br>
+                    <input type="checkbox" name="" value="5">Generation and machines (new sources, distributed generation)<br>
+                    <input type="checkbox" name="" value="6">Industrial applications<br>
+                    <input type="checkbox" name="" value="7">Intelligent systems<br>
+                    <input type="checkbox" name="" value="8">Market and regulation<br>
+                    <input type="checkbox" name="" value="9">Planning and study of distribution<br>
+                    <input type="checkbox" name="" value="10">Planning, study, operation, energetics efficiency<br>
+                    <input type="checkbox" name="" value="11">Protection/communication/automation/project of substation and distribution<br>
+                    <input type="checkbox" name="" value="12">Quality, eletromagnetics compatibility<br>
+                    <input type="checkbox" name="" value="13">Special Equipment SVC, SSC, FACTS, transmission CC<br>
+                    <input type="checkbox" name="" value="14">Transformers, capacitors, reactors<br>
                   </div>
                 </div>
               </div>

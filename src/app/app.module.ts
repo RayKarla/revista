@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AddRevistaComponent } from './add-revista/add-revista.component';
 import { FilterPipe } from './filter.pipe';
 
+import { AddRevistaService } from './add-revista/add-revista.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,7 @@ import { FilterPipe } from './filter.pipe';
     HttpModule,
     DataTableModule
   ],
-  providers: [],
+  providers: [AddRevistaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
