@@ -1,0 +1,35 @@
+.btn-add{
+    
+    margin-top:10px;
+    padding:9px 12px;
+    border-radius:0px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+table{
+    font-size: 15px;
+}
+.no-padding{
+    padding: 0px;
+}
+.title{
+    margin-bottom: 30px;
+}
+.panel{
+    margin-right: 0;
+    margin-left: 0;
+    border-color: #ddd;
+    border-width: 1px;
+    border-radius: 4px 4px 0 0;
+    padding: 10px
+}
+.gray-div {
+    background: #e6e6e6;
+    padding: 30px 20px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.has-success{
+    background: red;
+}

@@ -1,0 +1,181 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gray-div" [hidden]='add == true || selectedElement.issn!=""'>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-md-8 no-padding">
+        <h3>Revistas já cadastradas</h3>
+      </div>
+      <div class=" col-md-4">
+        <input type="text" class="form-control input-lg" [(ngModel)]="filterQuery" placeholder="Buscar" />
+      </div>
+    </div>
+  </div>
+  <div class='col-md-12'>
+    <table [mfData]="data | filter:[filterQuery, ['issn', 'titulo', 'estrato']]" #mf="mfDataTable" [mfRowsOnPage]="5" class="table table-hover">
+      <thead>
+        <tr>
+          <th><mfDefaultSorter by="issn">ISSN</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="titulo">Titulo</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="estrato">Estrato</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="logomarca">Logomarca</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="areas">Áreas</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="qualis">Qualis</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="informacoesBasicas">Informações básicas</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="condicoesDeSubmissao">Condições de submissão</mfDefaultSorter></th>
+          <th><mfDefaultSorter by="site">Site</mfDefaultSorter></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of mf.data" (click)="selectedElement = item" [ngClass]="{'has-success': selectedElement.issn == item.issn}">
+          <td>{{item.issn}}</td>
+          <td>{{item.titulo}}</td>
+          <td>{{item.estrato}}</td>
+          <!--<td>{{item.logomarca}}</td>
+          <td></td>
+          <td>{{item.qualis}}</td>
+          <td>{{item.informacoesBasicas}}</td>
+          <td>{{item.condicoesDeSubmissao}}</td>
+          <td>{{item.site}}</td>-->
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class='col-md-12 text-right'>
+    <button class="btn btn-primary btn-add" (click)='add = true'>Adicionar</button>
+  </div>
+</div>
+<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 gray-div' [hidden]="selectedElement.issn==''">
+  <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Editar revistas
+        </h3>
+      </div>
+      <div class="panel-body">
+        <form role="form">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>ISSN</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Titulo</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Estrato</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Logo Marca</label>
+                <input type="file">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Qualis</label>
+                <select class="form-control">
+               <option>A1</option>
+               <option>A2</option>
+               <option>B1</option>
+               <option>B2</option>
+               <option>B3</option>
+               <option>B4</option>
+               <option>B5</option>
+               <option>C</option>
+            </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Site</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Condições de submissão</label>
+                <textarea class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Informações básicas</label>
+                <textarea class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Area</label>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Energy</label>
+                    <br>
+                    <input type="checkbox" name="topic[]" value="1">Breaker and Equipment of maneuver<br>
+                    <input type="checkbox" name="topic[]" value="2">Cables and transmission lines<br>
+                    <input type="checkbox" name="topic[]" value="3">Energy planning<br>
+                    <input type="checkbox" name="topic[]" value="4">Enviroment performance<br>
+                    <input type="checkbox" name="topic[]" value="5">Generation and machines (new sources, distributed generation)<br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="button" class="btn btn-success btn-salvar btn-add" value="Salvar">
+          <button type="button" class='btn btn-primary btn-add' (click)='limparSelecao()'>Voltar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gray-div" [hidden]='add == false'>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h3>Adicionar Revistas</h3>
+    <div class="form-group">
+      <label>Adicionar Arquivo .xls</label><br>
+      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".ods,.xls,.xlsx">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary btn-add" (click)='add = false'>Voltar</button>
+        <button class="btn btn-success btn-add">Salvar</button>
+      </div>
+    </div>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th *ngFor="let item of headers">
+            {{item}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let line of xlsxData">
+          <td *ngFor="let col of headers">
+            {{line[col]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
